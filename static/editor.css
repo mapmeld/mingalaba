@@ -1,0 +1,16 @@
+body {
+  margin: 25px;
+  font-family: sans-serif;
+}
+
+textarea {
+  display: block;
+  width: 70%;
+  height: 15rem;
+  font-size: 1rem;
+}
+
+highlight {
+  font-weight: bold;
+  background: yellow;
+}

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Mingalaba</title>
+    <link rel="stylesheet" href="/editor.css" type="text/css"/>
+  </head>
+  <body>
+    <h3>Mingalaba</h3>
+
+    <section id="source">
+      <h4 class="translate">Source</h4>
+      <label>Upload text or CSV</label>
+      <input type="file"/>
+      <br/>
+      <br/>
+      <textarea id="code">
+မင်္ဂလာပါ World
+      </textarea>
+      <label for="font">Font</label>
+      <select id="font">
+        <option>sans-serif</option>
+        <option>serif</option>
+      </select>
+    </section>
+
+    <section id="chars">
+      <h4 class="translate">Chars</h4>
+      <div id="readout">
+      </div>
+    </section>
+
+    <section id="regex">
+      <h4 class="translate">Regex</h4>
+      <span>/<span>
+      <input id="exp" type="text" value="\s"/>
+      <span>/</span>
+      <input id="scope" type="text" value="g"/>
+      <button>Run</button>
+    </section>
+
+    <section id="sql">
+      <h4 class="translate">SQL</h4>
+      <label>Expression</label>
+      <input type="text" value="SELECT * FROM rows"/>
+      <button>Run</button>
+    </section>
+
+    <script type="text/javascript" src="/lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/editor.js"></script>
+  </body>
+</html>

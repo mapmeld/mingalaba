@@ -1,0 +1,22 @@
+{
+  "name": "mingalaba",
+  "version": "1.0.0",
+  "description": "Unicode strings text editor for programmers",
+  "scripts": {
+    "start": "node server.js",
+    "test": "mocha"
+  },
+  "keywords": [
+    "unicode",
+    "i18n",
+    "text"
+  ],
+  "author": "Nick Doiron <ndoiron@mapmeld.com>",
+  "license": "GPL-3.0",
+  "dependencies": {
+    "node-static": "^0.7.7"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.30.4"
+  }
+}
