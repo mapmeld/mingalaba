@@ -11,6 +11,20 @@ these are operations that I want to be able to do quickly:
 - look up any code point's meaning
 - run SQL and regular expressions against sample data
 
+Mingalaba is designed to make these actions smooth and visual, so you don't need language expertise to write the code.
+
+## Technologies used
+
+Client-side:
+
+- jQuery
+- PolyglotJS
+
+Server-side:
+
+- Node.JS
+- static-server module
+
 ## License
 
-GPLv3+ deal with it
+GPLv3 deal with it

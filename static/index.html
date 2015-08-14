@@ -3,6 +3,10 @@
   <head>
     <meta charset="utf-8"/>
     <title>Mingalaba</title>
+
+    <!-- CSS libraries -->
+
+    <!-- custom CSS -->
     <link rel="stylesheet" href="/editor.css" type="text/css"/>
   </head>
   <body>
@@ -10,14 +14,16 @@
 
     <section id="source">
       <h4 class="translate">Source</h4>
-      <label>Upload text or CSV</label>
+      <label class="translate">Import text, CSV, or SQLite</label>
       <input type="file"/>
-      <br/>
+      <hr/>
+      <label class="translate">Text</label>
       <br/>
       <textarea id="code">
-မင်္ဂလာပါ World
+word,sort
+မင်္ဂလာပါ World,1
       </textarea>
-      <label for="font">Font</label>
+      <label for="font" class="translate">Font</label>
       <select id="font">
         <option>sans-serif</option>
         <option>serif</option>
@@ -31,22 +37,34 @@
     </section>
 
     <section id="regex">
-      <h4 class="translate">Regex</h4>
+      <h4>
+        <span class="translate">Regex</span>
+        &nbsp;<span id="rmatches"></span>
+      </h4>
       <span>/<span>
       <input id="exp" type="text" value="\s"/>
       <span>/</span>
       <input id="scope" type="text" value="g"/>
-      <button>Run</button>
+      <button class="translate">Run</button>
+      <br/>
+      <span id="regex_complete"></span>
     </section>
 
     <section id="sql">
       <h4 class="translate">SQL</h4>
-      <label>Expression</label>
+      <p class="translate">Each line of your text is imported into SQLite as a row. The first row names the column fields.</p>
       <input type="text" value="SELECT * FROM rows"/>
-      <button>Run</button>
+      <button class="translate">Run</button>
     </section>
 
+    <!-- JS libraries -->
     <script type="text/javascript" src="/lib/jquery-1.11.3.min.js"></script>
+
+    <!-- tools and components -->
+    <script type="text/javascript" src="/regex_tool.js"></script>
+    <script type="text/javascript" src="/sql_tool.js"></script>
+
+    <!-- glue it together -->
     <script type="text/javascript" src="/editor.js"></script>
   </body>
 </html>

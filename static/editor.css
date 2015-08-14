@@ -8,9 +8,21 @@ textarea {
   width: 70%;
   height: 15rem;
   font-size: 1rem;
+  line-height: 1.3rem;
+}
+
+input, button {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  vertical-align: middle;
 }
 
 highlight {
   font-weight: bold;
   background: yellow;
+  border: 1px solid goldenrod;
+}
+
+diff {
+  background: pink;
 }

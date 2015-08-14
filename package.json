@@ -14,7 +14,9 @@
   "author": "Nick Doiron <ndoiron@mapmeld.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "node-static": "^0.7.7"
+    "fast-csv": "^0.6.0",
+    "node-static": "^0.7.7",
+    "sqlite3": "^3.0.9"
   },
   "devDependencies": {
     "electron-prebuilt": "^0.30.4"
