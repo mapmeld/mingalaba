@@ -1,9 +1,6 @@
 var updateContent;
 
 $(function() {
-  // use an internal HTML5 canvas element to measure text
-  var measure = $("<canvas>")[0].getContext("2d");
-
   updateContent = function(highlighter) {
     var srcText = $("#source textarea").val().trim();
     srcText = srcText.replace(/(\S)/g, "<span/>$1");
@@ -13,9 +10,11 @@ $(function() {
     var joinedText;
     if (highlighter) {
       if (typeof highlighter == "function") {
+        // tool sent a custom highlighter function
         joinedText = highlighter(srcText);
       } else {
-        // diff tool: add words which differ from highlight term
+        // diff tool: show where words differ from highlight term
+        // include if they start, end, or are different case from highlight
         var words = $("#source textarea").val().trim().split(/\s|,|\.+/);
         var diff_words = [];
         var start_phrases = [];
@@ -53,6 +52,7 @@ $(function() {
         var hl = new RegExp("(" + highlighter.replace(/(\S)/g, "<span/>$1") + ")", 'g');
         joinedText = srcText.replace(hl, '<highlight>$1</highlight>');
 
+        // after the 100% matches are highlighted, apply diffs
         for (var r = 0; r < start_phrases.length; r++) {
           if (start_phrases[r].length < 2) {
             continue;
@@ -69,13 +69,15 @@ $(function() {
           joinedText = joinedText.replace(sq, '<diff>$1</diff>$2');
         }
       }
-
     } else {
+      // by default, split text into "words" with spaces and other breaking characters
+      // TODO: unicode-categories
       joinedText = "<word>" + srcText.replace(/(\s|,|\.+)/g, "</word>$1<word>") + "</word>";
     }
     $("#readout").html(joinedText.replace(/\r\n|\n/g, '<br/>'));
 
-    // double-clicking a word
+    // double-clicking a word highlights all of its appearances
+    // and highlights words which start or end the same, too
     $("#readout word").dblclick(function(e) {
       updateContent($(this).text());
 
@@ -87,7 +89,7 @@ $(function() {
     });
   }
 
-  // resetting highlight
+  // set and reset highlight on doubleclick
   $("#readout").dblclick(function(e) {
     if (!$("#readout word").length) {
       updateContent();
@@ -96,7 +98,7 @@ $(function() {
 
   $("#source textarea")
     .on("change keypress keyup", function() {
-      // show split-up readout below
+      // show split-up readout below text input
       updateContent();
     })
     .on("select", function(e) {
@@ -104,11 +106,15 @@ $(function() {
       console.log(e);
       //updateContent("test");
     });
+
+  // fonts to support different languages
+  // keep consistent across input and output fields
   $("#font").change(function() {
     var newFont = $("#font").val();
     $("textarea, input, #readout").css({ fontFamily: newFont });
   });
 
+  // pressing enter/return should activate a tool
   $("input").keypress(function(e) {
     if (e.keyCode === 13) {
       $(e.currentTarget).parent().find("button").click();

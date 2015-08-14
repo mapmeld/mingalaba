@@ -13,6 +13,13 @@ these are operations that I want to be able to do quickly:
 
 Mingalaba is designed to make these actions smooth and visual, so you don't need language expertise to write the code.
 
+## Adding languages
+
+Edit the translations.json file to add a language. If you don't know how
+to edit the JSON file, put a list of translated words in the GitHub issues page.
+
+Your computer doesn't have any fonts for some languages. If this is a problem for you, install a font on your machine, or request we include it as a web font.
+
 ## Technologies used
 
 Client-side:

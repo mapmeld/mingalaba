@@ -5,14 +5,20 @@ $(function() {
     var rinput;
     try {
       rinput = new RegExp(modInput, $("#regex input#scope").val());
-      $("#regex input").css({ background: "#fff" });
     } catch(e) {
+      // user's regex was not valid
       $("#regex input").css({ background: "pink" });
       $("#regex #regex_complete").text("");
       updateContent();
       return;
     }
+    // show valid input
+    $("#regex input").css({ background: "#fff" });
+
+    // show matches counter
     $("#regex #regex_complete").html(rinput.toString().replace(/(\S)/g, "<span/>$1"));
+
+    // show highlight on all matches, with custom function
     updateContent(function(txt) {
       var replaces = txt.replace(/\<span\/\>/g, '').match(rinput);
       $("#rmatches").text("(" + (replaces || []).length + " matches)");

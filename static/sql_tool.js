@@ -1,4 +1,8 @@
 $(function() {
+  // completely pseudocode so far
+  // need to send this to the server for true SQLite
+  // possible to use Web SQL? is that still a thing?
+
   function makeSqlQuery(sql) {
     $.post("/sql", {
       query: sql,

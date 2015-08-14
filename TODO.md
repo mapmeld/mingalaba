@@ -14,6 +14,7 @@
 
 - Add and implement PolyglotJS
 - Include more Google Noto fonts
+- Can I have plugins, like add myanmar-numbers module or zawgyi module, and use it to transform output in the readout?
 
 ## Display features
 

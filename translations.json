@@ -1,0 +1,13 @@
+{
+  "en": {
+    "Chars": "Chars",
+    "Each line of your text is imported into SQLite as a row. The first row names the column fields.": "Each line of your text is imported into SQLite as a row. The first row names the column fields.",
+    "Find": "Find",
+    "Font": "Font",
+    "Import text, CSV, or SQLite": "Import text, CSV, or SQLite",
+    "Mingalaba": "Mingalaba",
+    "Run": "Run",
+    "Source": "Source",
+    "SQL": "SQL"
+  }
+}
