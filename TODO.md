@@ -22,10 +22,11 @@
 ## Regex
 
 - Hook into unicode-categories module; accept all digits as \d; all commas and periods similar to comma?
+- Multiple matches: try " or \w
 
 ## SQLite
 
-- Running with server
+- Running with server - do I need to ship it with Express?
 - Possible to run with Electron?
 
 ## Electron

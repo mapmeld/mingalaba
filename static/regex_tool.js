@@ -16,17 +16,21 @@ $(function() {
     $("#regex input").css({ background: "#fff" });
 
     // show matches counter
-    $("#regex #regex_complete").html(rinput.toString().replace(/(\S)/g, "<span/>$1"));
+    $("#regex #regex_complete").html(rinput.toString().replace(/(.)/g, "<span/>$1"));
 
     // show highlight on all matches, with custom function
     updateContent(function(txt) {
       var replaces = txt.replace(/\<span\/\>/g, '').match(rinput);
       $("#rmatches").text("(" + (replaces || []).length + " matches)");
       if (replaces) {
+        var oldReplaces = [];
         for (var i = 0; i < replaces.length; i++) {
-          var separated = replaces[i].replace(/(\S)/g, "<span/>$1");
-          var separatedEx = new RegExp("(" + separated + ")");
-          txt = txt.replace(separatedEx, "<highlight>$1</highlight>");
+          var separated = replaces[i].replace(/(.)/g, "<span/>$1");
+          if (oldReplaces.indexOf(separated) === -1) {
+            oldReplaces.push(separated);
+            var separatedEx = new RegExp("(" + separated + ")", "g");
+            txt = txt.replace(separatedEx, "<highlight>$1</highlight>");
+          }
         }
       }
       return txt;

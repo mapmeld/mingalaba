@@ -3,7 +3,7 @@ var updateContent;
 $(function() {
   updateContent = function(highlighter) {
     var srcText = $("#source textarea").val().trim();
-    srcText = srcText.replace(/(\S)/g, "<span/>$1");
+    srcText = srcText.replace(/(.)/g, "<span/>$1");
 
     $("#rmatches").text("");
 
@@ -49,7 +49,7 @@ $(function() {
         }
 
         // highlight tool: show words which do match
-        var hl = new RegExp("(" + highlighter.replace(/(\S)/g, "<span/>$1") + ")", 'g');
+        var hl = new RegExp("(" + highlighter.replace(/(.)/g, "<span/>$1") + ")", 'g');
         joinedText = srcText.replace(hl, '<highlight>$1</highlight>');
 
         // after the 100% matches are highlighted, apply diffs
@@ -57,7 +57,7 @@ $(function() {
           if (start_phrases[r].length < 2) {
             continue;
           }
-          var sq = new RegExp("(\\s|,|\\.+|^)(" + start_phrases[r].replace(/(\S)/g, "\<span\/\>$1") + ")", "gi");
+          var sq = new RegExp("(\\s|,|\\.+|^)(" + start_phrases[r].replace(/(.)/g, "\<span\/\>$1") + ")", "gi");
           joinedText = joinedText.replace(sq, '$1<diff>$2</diff>');
         }
 
@@ -65,7 +65,7 @@ $(function() {
           if (end_phrases[r].length < 2) {
             continue;
           }
-          var sq = new RegExp("(" + end_phrases[r].replace(/(\S)/g, "\<span\/\>$1") + ")(\\s|,|\\.+|$)", "gi");
+          var sq = new RegExp("(" + end_phrases[r].replace(/(.)/g, "\<span\/\>$1") + ")(\\s|,|\\.+|$)", "gi");
           joinedText = joinedText.replace(sq, '<diff>$1</diff>$2');
         }
       }
