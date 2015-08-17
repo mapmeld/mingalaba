@@ -5,60 +5,93 @@
     <title>Mingalaba</title>
 
     <!-- CSS libraries -->
+    <link rel="stylesheet" href="/lib/bootstrap-yeti.min.css" type="text/css"/>
 
     <!-- custom CSS -->
     <link rel="stylesheet" href="/editor.css" type="text/css"/>
   </head>
   <body>
-    <h3>Mingalaba</h3>
-
-    <section id="source">
-      <h4 class="translate">Source</h4>
-      <label class="translate">Import text, CSV, or SQLite</label>
-      <input type="file"/>
-      <hr/>
-      <label class="translate">Text</label>
-      <br/>
-      <textarea id="code">
-word,sort
-မင်္ဂလာပါ World,1
-      </textarea>
-      <label for="font" class="translate">Font</label>
-      <select id="font">
-        <option>sans-serif</option>
-        <option>serif</option>
-      </select>
-    </section>
-
-    <section id="chars">
-      <h4 class="translate">Chars</h4>
-      <div id="readout">
+    <div class="container">
+      <div class="row">
+        <h3>Mingalaba</h3>
       </div>
-    </section>
 
-    <section id="regex">
-      <h4>
-        <span class="translate">Regex</span>
-        &nbsp;<span id="rmatches"></span>
-      </h4>
-      <span>/<span>
-      <input id="exp" type="text" value="\s"/>
-      <span>/</span>
-      <input id="scope" type="text" value="g"/>
-      <button class="translate">Run</button>
-      <br/>
-      <span id="regex_complete"></span>
-    </section>
+      <div class="row">
+        <section id="source" class="form-horizontal well">
+          <h4 class="translate">Source</h4>
+          <div class="form-group">
+            <label class="translate control-label" for="file">Import text, CSV, or SQLite</label>
+            <input name="file" class="form-control" type="file"/>
+          </div>
+          <div class="form-group">
+            <label class="translate control-label">Text</label>
+            <br/>
+            <textarea id="code" class="form-control">
+    word,sort
+    မင်္ဂလာပါ World,1
+            </textarea>
+          </div>
+          <div class="form-group">
+            <label for="font" class="translate control-label">Font</label>
+            <select id="font">
+              <option>sans-serif</option>
+              <option>serif</option>
+            </select>
+          </div>
+        </section>
+      </div>
 
-    <section id="sql">
-      <h4 class="translate">SQL</h4>
-      <p class="translate">Each line of your text is imported into SQLite as a row. The first row names the column fields.</p>
-      <input type="text" value="SELECT * FROM rows"/>
-      <button class="translate">Run</button>
-    </section>
+      <div class="row">
+        <section id="chars">
+          <h4 class="translate">Chars</h4>
+          <div id="readout" class="well">
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <section id="regex" class="form-horizontal">
+          <h4>
+            <span class="translate">Regex</span>
+            &nbsp;<span id="rmatches"></span>
+          </h4>
+          <div class="form-group well">
+            <div class="col-md-12">
+              <span>/<span>
+              <input id="exp" type="text" class="form-control" value="\s"/>
+              <span>/</span>
+              <input id="scope" type="text" class="form-control" value="gi"/>
+              <button class="translate btn">Run</button>
+            </div>
+            <div class="col-md-12">
+              <div class="form-group">
+                <br/>
+                <span class="translate">Copy</span>
+                <span id="regex_complete">/\s/gi</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <section id="sql" class="form-horizontal">
+          <h4 class="translate">SQL</h4>
+          <p class="translate">Each line of your text is imported into SQLite as a row. The first row names the column fields.</p>
+          <div class="form-group well">
+            <input type="text" class="form-control" value="SELECT * FROM rows"/>
+            <button class="translate btn">Run</button>
+          </div>
+        </section>
+      </div>
+    </div>
 
     <!-- JS libraries -->
     <script type="text/javascript" src="/lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/lib/polyglot.min.js"></script>
+
+    <!-- translations -->
+    <script type="text/javascript" src="/translations.js"></script>
 
     <!-- tools and components -->
     <script type="text/javascript" src="/regex_tool.js"></script>

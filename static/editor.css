@@ -3,18 +3,22 @@ body {
   font-family: sans-serif;
 }
 
-textarea {
+textarea.form-control {
   display: block;
-  width: 70%;
   height: 15rem;
-  font-size: 1rem;
-  line-height: 1.3rem;
+  font-size: 1.5rem;
+  line-height: 2rem;
 }
 
 input, button {
   font-size: 1rem;
   line-height: 1.3rem;
   vertical-align: middle;
+}
+
+input.form-control {
+  display: inline;
+  width: auto;
 }
 
 highlight {
@@ -25,4 +29,13 @@ highlight {
 
 diff {
   background: pink;
+}
+
+input, textarea, #readout {
+  font-family: sans-serif;
+}
+
+#readout {
+  max-height: 30rem;
+  overflow: scroll;
 }

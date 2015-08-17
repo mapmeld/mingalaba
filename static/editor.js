@@ -103,8 +103,7 @@ $(function() {
     })
     .on("select", function(e) {
       // show what you are highlighting
-      console.log(e);
-      //updateContent("test");
+      updateContent(this.value.substring(this.selectionStart, this.selectionEnd));
     });
 
   // fonts to support different languages
@@ -118,6 +117,19 @@ $(function() {
   $("input").keypress(function(e) {
     if (e.keyCode === 13) {
       $(e.currentTarget).parent().find("button").click();
+    }
+  });
+
+  // uploading a file
+  $("input[type='file']").change(function() {
+    if (this.files.length) {
+      var file = this.files[0];
+      var reader = new FileReader();
+      reader.onload = function(e) {
+        $("textarea").val(e.target.result);
+        updateContent();
+      };
+      reader.readAsText(file);
     }
   });
 

@@ -1,18 +1,16 @@
 ## CSS basics
 
-- Get grid framework
 - Use SASS
-- What browsers don't support rems?
+- Old IE rems
 
 ## JS UI
 
-- Highlighting words should highlight all like words (like double-click)
 - Syntax highlighting for code?
-- Copy to clipboard on so many things
+- Copy to Clipboard http://stackoverflow.com/a/30810322
 
 ## i18n
 
-- Add and implement PolyglotJS
+- Implement PolyglotJS
 - Include more Google Noto fonts
 - Can I have plugins, like add myanmar-numbers module or zawgyi module, and use it to transform output in the readout?
 
