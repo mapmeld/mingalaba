@@ -2,6 +2,7 @@
   "name": "mingalaba",
   "version": "1.0.0",
   "description": "Unicode strings text editor for programmers",
+  "main": "desktop.js",
   "scripts": {
     "start": "node server.js",
     "test": "mocha"
