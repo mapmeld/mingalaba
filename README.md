@@ -26,6 +26,8 @@ Client-side:
 
 - jQuery
 - PolyglotJS
+- Papa Parse (CSV)
+- SQL Parser from Forward Technology
 
 Server-side:
 

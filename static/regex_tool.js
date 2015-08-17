@@ -1,4 +1,12 @@
 $(function() {
+  function matchText(count) {
+    if (count === 1) {
+      return "(1 match)";
+    } else {
+      return "(" + count + " matches)";
+    }
+  }
+
   // run a regex to highlight text of chars
   $("#regex button").click(function() {
     var modInput = $("#regex input#exp").val();
@@ -21,7 +29,7 @@ $(function() {
     // show highlight on all matches, with custom function
     updateContent(function(txt) {
       var replaces = txt.replace(/\<span\/\>/g, '').match(rinput);
-      $("#rmatches").text("(" + (replaces || []).length + " matches)");
+      $("#rmatches").text(matchText((replaces || []).length));
       if (replaces) {
         var oldReplaces = [];
         for (var i = 0; i < replaces.length; i++) {
