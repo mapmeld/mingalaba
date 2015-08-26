@@ -43,13 +43,16 @@ $(function() {
           outcolumns = columns.concat([]);
         }
         outrow = rows[r].concat([]);
+        for (var or = 0; or < outrow.length; or++) {
+          outrow[or] = outrow[or].split("").join("<span/>");
+        }
       } else {
         for (var s = 0; s < selections.length; s++) {
           if (columns.indexOf(selections[s]) > -1) {
             if (r === 1) {
               outcolumns.push(selections[s]);
             }
-            outrow.push( rows[r][ columns.indexOf(selections[s]) ] );
+            outrow.push( rows[r][ columns.indexOf(selections[s]) ].split("").join("<span/>") );
           }
         }
       }

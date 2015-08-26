@@ -6,8 +6,8 @@ body {
 textarea.form-control {
   display: block;
   height: 15rem;
-  font-size: 1.5rem;
-  line-height: 2rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
 }
 
 input, button {
@@ -35,7 +35,19 @@ input, textarea, #readout {
   font-family: sans-serif;
 }
 
-#readout {
+#readout, #regex_complete {
   max-height: 30rem;
   overflow: scroll;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  border: 1px solid silver;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.headliner {
+  background: #7c2fdc;
+  color: #fff;
+  padding-top: 10px;
+  margin-bottom: 30px;
 }

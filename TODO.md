@@ -1,12 +1,13 @@
 ## CSS basics
 
-- Use SASS
-- Old IE rems
+- Bootstrap v4
+- Old IE helps
 
 ## JS UI
 
 - Syntax highlighting for code?
 - Copy to Clipboard http://stackoverflow.com/a/30810322
+- Erasing a multi-part character should only erase the last char, not all of it at once
 
 ## i18n
 
