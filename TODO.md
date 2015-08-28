@@ -1,12 +1,17 @@
+## Usability
+
+- UI + UX
+- Feature list and screenshots
+
 ## CSS basics
 
-- Bootstrap v4
 - Old IE helps
+- Regex and SQL top margins during one-column mode
 
 ## JS UI
 
-- Syntax highlighting for code?
-- Copy to Clipboard http://stackoverflow.com/a/30810322
+- Syntax highlighting for code? Pushbutton activate
+- Copy to Clipboard for RegExp, SQL http://stackoverflow.com/a/30810322
 - Erasing a multi-part character should only erase the last char, not all of it at once
 
 ## i18n
@@ -20,16 +25,22 @@
 - Invisible codepoints
 - Look up code point and meaning
 
-## Regex
+## Regex / Find
 
 - Hook into unicode-categories module; accept all digits as \d; all commas and periods similar to comma?
-- Multiple matches: try " or \w
+- If I highlight \r \n, show \r \n text?
 
 ## SQLite
 
-- Running with server - do I need to ship it with Express?
+- Syntax highlighting
 - Possible to run with Electron?
+- Importing a SQLite file from the browser
+- Activating changes "Chars" window to "Chars: SQL Results"
 
 ## Electron
 
 - Distribute as a desktop app using Electron
+
+## Testing
+
+- Jasmine tests

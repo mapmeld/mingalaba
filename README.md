@@ -25,9 +25,7 @@ Your computer doesn't have any fonts for some languages. If this is a problem fo
 Client-side:
 
 - jQuery
-- PolyglotJS
-- Papa Parse (CSV)
-- SQL Parser from Forward Technology
+- PolyglotJS from Airbnb
 
 Server-side:
 
