@@ -31,6 +31,13 @@ diff {
   background: pink;
 }
 
+null {
+  display: inline-block;
+  width: 4px;
+  background: #aaa;
+  line-height: 0.9rem;
+}
+
 input, textarea, #readout {
   font-family: sans-serif;
 }

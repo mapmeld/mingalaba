@@ -76,7 +76,7 @@ $(function() {
           outcolumns = columns.concat([]);
         }
         for (var or = 0; or < outrow.length; or++) {
-          outrow[or] = outrow[or].split("").join("<span/>");
+          outrow[or] = outrow[or];
         }
       } else {
         outrow = [];
@@ -85,7 +85,7 @@ $(function() {
             if (outrows.length === 0) {
               outcolumns.push(selections[s]);
             }
-            outrow.push( rows[r][ columns.indexOf(selections[s]) ].split("").join("<span/>") );
+            outrow.push( rows[r][ columns.indexOf(selections[s]) ] );
           }
         }
       }
@@ -93,7 +93,7 @@ $(function() {
     }
     outrows = outrows.join("<br/>");
 
-    $("#readout").html(outcolumns.join(",") + "<br/>" + outrows);
+    updateReadout(outcolumns.join(",") + "<br/>" + outrows);
 
     sql_in_progress = false;
 */
@@ -103,9 +103,9 @@ $(function() {
       data: $("#source textarea").val().trim()
     }, function(response) {
       var j_response = JSON.parse(response);
-      $("#readout").html(j_response.map(function(response_row) {
-        return JSON.stringify(response_row).split("").join("<span/>");
-      }).join("<br/>"))
+      updateReadout(j_response.map(function(response_row) {
+        return JSON.stringify(response_row);
+      }).join("<br/>"));
       sql_in_progress = false;
     });
   }

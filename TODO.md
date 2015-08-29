@@ -21,7 +21,6 @@
 
 ## Display features
 
-- Invisible codepoints
 - Look up code point and meaning
 
 ## Regex / Find

@@ -1,9 +1,26 @@
-var updateContent;
+var updateContent, updateReadout;
 
 $(function() {
+  updateReadout = function (chars) {
+    var measure_canvas = $("<canvas>")[0];
+    var measure = measure_canvas.getContext('2d');
+
+    chars = chars.replace(/\r\n|\n/g, '<br/>').split("");
+    for (var c = 0; c < chars.length; c++) {
+      // don't split ASCII, so you can embed ASCII tags
+      // split the rest so diacritics are visible
+      if (chars[c].charCodeAt(0) > 127) {
+        if (measure.measureText(chars[c]).width === 0) {
+          chars[c] = "<null>" + chars[c] + "</null>";
+        }
+        chars[c] = "<span/>" + chars[c];
+      }
+    }
+    $("#readout").html(chars.join(""));
+  };
+
   updateContent = function(highlighter) {
-    var srcText = $("#source textarea").val().trim();
-    srcText = srcText.replace(/(.)/g, "<span/>$1");
+    var srcText = $("#source textarea").val().trim().replace(/</g, '&lt;').replace(/>/g, '&gt;');
 
     $("#rmatches").text("");
 
@@ -15,7 +32,7 @@ $(function() {
       } else {
         // diff tool: show where words differ from highlight term
         // include if they start, end, or are different case from highlight
-        var words = $("#source textarea").val().trim().split(/\s|,|\.+/);
+        var words = $("#source textarea").val().trim().split(/\s|,|\"|\'|\?|\!|\r|\n|\.+/);
         var diff_words = [];
         var start_phrases = [];
         var end_phrases = [];
@@ -24,32 +41,44 @@ $(function() {
           var simWord = words[w].toLowerCase();
           if (words[w] !== highlighter && diff_words.indexOf(simHighlight) === -1) {
             if (simWord[0] === simHighlight[0]) {
-              start_phrases.push("");
+              var highlightPart = '';
               for (var c = 0; c < simWord.length && c < simHighlight.length; c++) {
                 if (simWord[c] === simHighlight[c]) {
-                  start_phrases[start_phrases.length-1] += simHighlight[c];
+                  highlightPart += simHighlight[c];
                 } else {
                   break;
                 }
               }
               diff_words.push(simWord);
+              if (highlightPart.length > 1 && start_phrases.indexOf(highlightPart) === -1) {
+                start_phrases.push(highlightPart);
+              }
             }
             if (simWord[simWord.length-1] === simHighlight[simHighlight.length-1]) {
-              end_phrases.push("");
-              for (var c = 1; c < simWord.length && c < simHighlight.length; c++) {
+              var highlightPart = '';
+              for (var c = 1; c <= simWord.length && c <= simHighlight.length; c++) {
                 if (simWord[simWord.length - c] === simHighlight[simHighlight.length - c]) {
-                  end_phrases[end_phrases.length-1] = simHighlight[simHighlight.length - c] + end_phrases[end_phrases.length-1];
+                  highlightPart = simHighlight[simHighlight.length - c] + highlightPart;
                 } else {
                   break;
                 }
               }
               diff_words.push(simWord);
+              if (highlightPart.length > 1 && end_phrases.indexOf(highlightPart) === -1) {
+                end_phrases.push(highlightPart);
+              }
             }
+            start_phrases.sort(function(a, b) {
+              return b.length - a.length;
+            });
+            end_phrases.sort(function(a, b) {
+              return b.length - a.length;
+            });
           }
         }
 
         // highlight tool: show words which do match
-        var hl = new RegExp("(" + highlighter.replace(/(.)/g, "<span/>$1") + ")", 'g');
+        var hl = new RegExp("(" + highlighter + ")", 'g');
         joinedText = srcText.replace(hl, '<highlight>$1</highlight>');
 
         // after the 100% matches are highlighted, apply diffs
@@ -57,7 +86,7 @@ $(function() {
           if (start_phrases[r].length < 2) {
             continue;
           }
-          var sq = new RegExp("(\\s|,|\\.+|^)(" + start_phrases[r].replace(/(.)/g, "\<span\/\>$1") + ")", "gi");
+          var sq = new RegExp("(\\s|,|\\.+|^)(" + start_phrases[r] + ")", "gi");
           joinedText = joinedText.replace(sq, '$1<diff>$2</diff>');
         }
 
@@ -65,7 +94,7 @@ $(function() {
           if (end_phrases[r].length < 2) {
             continue;
           }
-          var sq = new RegExp("(" + end_phrases[r].replace(/(.)/g, "\<span\/\>$1") + ")(\\s|,|\\.+|$)", "gi");
+          var sq = new RegExp("(" + end_phrases[r] + ")(\\s|,|\\.|\"|\'|\\?|\\!|\\r|\\n+|$)", "gi");
           joinedText = joinedText.replace(sq, '<diff>$1</diff>$2');
         }
       }
@@ -74,20 +103,18 @@ $(function() {
       // TODO: unicode-categories
       joinedText = "<word>" + srcText.replace(/(\s|,|\.+)/g, "</word>$1<word>") + "</word>";
     }
-    $("#readout").html(joinedText.replace(/\r\n|\n/g, '<br/>'));
+    updateReadout(joinedText);
 
     // double-clicking a word highlights all of its appearances
     // and highlights words which start or end the same, too
     $("#readout word").dblclick(function(e) {
       updateContent($(this).text());
 
-      // todo: copy to clipboard without <span/>s
-
       e.preventDefault();
       e.stopPropagation();
       return false;
     });
-  }
+  };
 
   // set and reset highlight on doubleclick
   $("#readout").dblclick(function(e) {

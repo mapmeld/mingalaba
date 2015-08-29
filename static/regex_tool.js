@@ -28,12 +28,12 @@ $(function() {
 
     // show highlight on all matches, with custom function
     updateContent(function(txt) {
-      var replaces = txt.replace(/\<span\/\>/g, '').match(rinput);
+      var replaces = txt.match(rinput);
       $("#rmatches").text(matchText((replaces || []).length));
       if (replaces) {
         var oldReplaces = [];
         for (var i = 0; i < replaces.length; i++) {
-          var separated = replaces[i].replace(/(.)/g, "<span/>$1");
+          var separated = replaces[i];
           if (oldReplaces.indexOf(separated) === -1) {
             oldReplaces.push(separated);
             var separatedEx = new RegExp("(" + separated + ")", "g");
