@@ -1,9 +1,8 @@
 // make translations with Polyglot.js
 var polyglot, _;
 var rightToLeft = false;
-var translations = [];
 
-function doTranslations() {
+function doTranslations(translations) {
   polyglot = new Polyglot({ phrases: translations });
   _ = function (word, vars) {
     return polyglot.t(word, vars);
@@ -37,3 +36,21 @@ function doTranslations() {
     $("body").addClass("rtl");
   }
 }
+
+function gup( name, url ) {
+  if (!url) url = location.href
+  name = name.replace(/[\[]/,"\\\[").replace(/[\]]/,"\\\]");
+  var regexS = "[\\?&]"+name+"=([^&#]*)";
+  var regex = new RegExp( regexS );
+  var results = regex.exec( url );
+  return results == null ? null : results[1];
+}
+
+var lang_ending = '';
+if (gup("lang")) {
+  lang_ending = '?lang=' + gup("lang").toLowerCase();
+}
+
+$.getJSON('/translate' + lang_ending, function (translations) {
+  doTranslations(translations);
+});

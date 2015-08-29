@@ -7,6 +7,8 @@ var db = new sqlite3.Database('./source.sqlite3');
 
 var file = new st.Server('./static/');
 
+var translations = require("./translations.json");
+
 http.createServer(function (request, response) {
   var bodytxt = '';
   request.on('data', function (data) {
@@ -16,7 +18,28 @@ http.createServer(function (request, response) {
     }
   });
   request.on('end', function () {
-    if (request.url === "/sql") {
+    var baseurl = request.url.toLowerCase().split("?")[0];
+    if (baseurl === "/translate") {
+      var default_language = "en";
+
+      // change default in this order: URL parameter is set, language in request header is available
+      var set_language = null;
+      if (request.url.indexOf("?") > -1) {
+        set_language = qs.parse(request.url.split("?")[1]).lang || null;
+      }
+      if (!set_language) {
+        var request_languages = request.headers["accept-language"].split(/,|;/);
+        for (var lang = 0; lang < request_languages.length; lang++) {
+          if (translations[request_languages[lang]]) {
+            set_language = request_languages[lang];
+            break;
+          }
+        }
+        set_language = set_language || default_language;
+      }
+      response.write(JSON.stringify(translations[set_language] || {}));
+      return response.end();
+    } else if (baseurl === "/sql") {
       db.run("DROP TABLE rows", function(err) {
         // create a new table
         var postdata = qs.parse(bodytxt);
@@ -31,7 +54,6 @@ http.createServer(function (request, response) {
 
         db.run("CREATE TABLE rows ('id' INTEGER PRIMARY KEY AUTOINCREMENT, " + inserts.join(",") + ")", function(err) {
           var loadRow = function(r) {
-            console.log("INSERT INTO rows (" + column_names.join(",") + ") VALUES ('" + rows[r].join("','") + "')");
             db.run("INSERT INTO rows (" + column_names.join(",") + ") VALUES ('" + rows[r].join("','") + "')", function(err) {
               r++;
               if (r >= rows.length) {
@@ -39,7 +61,6 @@ http.createServer(function (request, response) {
                   if (err) {
                     console.log(err);
                   }
-                  console.log(result_rows);
                   response.write(JSON.stringify(result_rows) + "");
                   response.end();
                 });
