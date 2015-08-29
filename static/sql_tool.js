@@ -2,9 +2,9 @@ $(function() {
   // need to send this to the server for true SQLite
 
   function makeSqlQuery(sql) {
-    /*
     var srcData = $("textarea").val().trim();
 
+/*
     // until server-side SQL is configured, do a CSV Parse
     var csv = Papa.parse(srcData, { delimiter: "," });
     var rows = csv.data;
@@ -99,15 +99,20 @@ $(function() {
 */
 
     $.post("/sql", {
-      query: sql,
-      data: $("#source textarea").val().trim()
-    }, function(response) {
-      var j_response = JSON.parse(response);
-      updateReadout(j_response.map(function(response_row) {
-        return JSON.stringify(response_row);
-      }).join("<br/>"));
-      sql_in_progress = false;
-    });
+        query: sql,
+        data: srcData
+      },
+      function(response) {
+        sql_in_progress = false;
+        if (response.indexOf('၊') > -1 && srcData.indexOf('၊') === -1) {
+          response = response.replace(/၊/g, "'");
+        }
+        var j_response = JSON.parse(response);
+        updateReadout(j_response.map(function(response_row) {
+          return JSON.stringify(response_row);
+        }).join("<br/>"));
+      }
+    );
   }
 
   var sql_in_progress = false;

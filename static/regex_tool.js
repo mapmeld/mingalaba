@@ -39,8 +39,8 @@ $(function() {
           var separated = replaces[i];
           if (oldReplaces.indexOf(separated) === -1) {
             oldReplaces.push(separated);
-            var separatedEx = new RegExp("[^>](" + separated.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ")[^<]");
-            txt = txt.replace(separatedEx, "<highlight>$1</highlight>");
+            var separatedEx = new RegExp("([^>])(" + separated.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ")([^<])");
+            txt = txt.replace(separatedEx, "$1<highlight>$2</highlight>$3");
           }
         }
       }

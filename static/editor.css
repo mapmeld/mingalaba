@@ -50,6 +50,7 @@ input, textarea, #readout {
   border: 1px solid silver;
   padding: 10px;
   border-radius: 5px;
+  white-space: nowrap;
 }
 
 .headliner {
