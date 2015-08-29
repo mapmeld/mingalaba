@@ -51,6 +51,19 @@ if (gup("lang")) {
   lang_ending = '?lang=' + gup("lang").toLowerCase();
 }
 
-$.getJSON('/translate' + lang_ending, function (translations) {
-  doTranslations(translations);
+$.getJSON('translations.json', function (translations) {
+  var preferred = [gup("lang"), window.navigator.language].concat(window.navigator.languages || []).concat(["en"]);
+  for (var p = 0; p < preferred.length; p++) {
+    if (!preferred[p]) {
+      continue;
+    }
+    if (translations[preferred[p]]) {
+      doTranslations(translations[preferred[p]]);
+      break;
+    }
+    if (translations[preferred[p].split(/_|\-/)[0]]) {
+      doTranslations(translations[preferred[p].split(/_|\-/)[0]]);
+      break;
+    }
+  }
 });
