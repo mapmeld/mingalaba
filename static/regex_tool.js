@@ -32,11 +32,14 @@ $(function() {
       $("#rmatches").text(matchText((replaces || []).length));
       if (replaces) {
         var oldReplaces = [];
+        replaces = replaces.sort(function (a, b) {
+          return b.length - a.length;
+        });
         for (var i = 0; i < replaces.length; i++) {
           var separated = replaces[i];
           if (oldReplaces.indexOf(separated) === -1) {
             oldReplaces.push(separated);
-            var separatedEx = new RegExp("(" + separated + ")", "g");
+            var separatedEx = new RegExp("[^>](" + separated.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ")[^<]");
             txt = txt.replace(separatedEx, "<highlight>$1</highlight>");
           }
         }
