@@ -1,119 +1,52 @@
 $(function() {
-  // need to send this to the server for true SQLite
-
-  function makeSqlQuery(sql) {
+  function makeSqlQuery(query) {
     var srcData = $("textarea").val().trim();
 
-/*
     // until server-side SQL is configured, do a CSV Parse
     var csv = Papa.parse(srcData, { delimiter: "," });
     var rows = csv.data;
 
-    // then parse the query
-    var query = SQLParser.lexer.tokenize(sql);
-    var selections = [];
-    var criteria = [];
-    var mode;
-    for (var p = 0; p < query.length; p++) {
-      if (query[p][0] === "SELECT") {
-        mode = "SELECT";
-      } else if (query[p][0] === "FROM") {
-        mode = "FROM";
-      } else if (query[p][0] === "WHERE") {
-        mode = "WHERE";
-      } else if (mode) {
-        // must be part of the current mode
-        if (mode === "SELECT") {
-          if (query[p][0] === "LITERAL" || query[p][0] === "STAR") {
-            selections.push(query[p][1]);
-          }
-        }
-        if (mode === "WHERE") {
-          if (['LITERAL', 'OPERATOR', 'NUMBER', 'STRING'].indexOf(query[p][0]) > -1) {
-            criteria.push(query[p][1]);
-          }
-        }
-      }
-    }
+    var db = new SQL.Database();
 
-    // srcData = srcData.split(/\r\n|\n/g);
-    var columns = rows[0];
-    var outrows = [];
-    var outcolumns = [];
+    // eliminate old database info
+    try {
+      db.run('DROP TABLE rows');
+    } catch (e) {}
 
-    var rejectRow = function(row) {
-      var evalPhrase = '';
-      for (var c = 0; c < criteria.length; c++) {
-        if (columns.indexOf(criteria[c]) > -1) {
-          var rowVal = row[columns.indexOf(criteria[c])];
-          if (isNaN(rowVal * 1)) {
-            evalPhrase += "'" + rowVal.replace(/'/g, "\\'") + "'";
-          } else {
-            evalPhrase += rowVal * 1;
-          }
-        } else {
-          evalPhrase += criteria[c];
-          if (criteria[c] === "=") {
-            evalPhrase += "=";
-          }
-        }
+    // create a new table
+    var column_names = rows[0].concat([]);
+    var inserts = column_names.map(function(column_name) {
+      return "'" + column_name.replace(/'/g, '၊') + "' TEXT";
+    });
+    db.run("CREATE TABLE rows ('id' INTEGER PRIMARY KEY AUTOINCREMENT, " + inserts.join(',') + ')');
+
+    // load CSV into table
+    var loadRow = function(r) {
+      var sqlvals = [];
+      for (var key in rows[r]) {
+        sqlvals.push(rows[r][key].replace(/'/g, '၊'))
       }
-      try {
-        return !(eval(evalPhrase));
-      } catch(e) {
-        console.log(e);
-        return true;
+      db.run('INSERT INTO rows (' + column_names.join(',') + ") VALUES ('" + sqlvals.join("','") + "')");
+      r++;
+      if (r >= rows.length) {
+        var result = db.exec(query)[0];
+        var header = [result.columns];
+        var result_rows = result.values;
+        updateReadout(header.concat(result_rows).map(function (row) {
+          return JSON.stringify(row);
+        }).join("<br/>"));
+        sql_in_progress = false;
+      } else {
+        loadRow(r);
       }
     };
-
-    for (var r = 1; r < rows.length; r++) {
-      var outrow = rows[r].concat([]);
-      if (rejectRow(outrow)) {
-        continue;
-      }
-      if (selections.indexOf("*") > -1) {
-        if (!outcolumns.length) {
-          outcolumns = columns.concat([]);
-        }
-        for (var or = 0; or < outrow.length; or++) {
-          outrow[or] = outrow[or];
-        }
-      } else {
-        outrow = [];
-        for (var s = 0; s < selections.length; s++) {
-          if (columns.indexOf(selections[s]) > -1) {
-            if (outrows.length === 0) {
-              outcolumns.push(selections[s]);
-            }
-            outrow.push( rows[r][ columns.indexOf(selections[s]) ] );
-          }
-        }
-      }
-      outrows.push(outrow.join(","));
+    if (rows.length > 1) {
+      loadRow(1);
+    } else {
+      updateReadout('');
+      sql_in_progress = false;
     }
-    outrows = outrows.join("<br/>");
-
-    updateReadout(outcolumns.join(",") + "<br/>" + outrows);
-
-    sql_in_progress = false;
-*/
-
-    $.post("/sql", {
-        query: sql,
-        data: srcData
-      },
-      function(response) {
-        sql_in_progress = false;
-        if (response.indexOf('၊') > -1 && srcData.indexOf('၊') === -1) {
-          response = response.replace(/၊/g, "'");
-        }
-        var j_response = JSON.parse(response);
-        updateReadout(j_response.map(function(response_row) {
-          return JSON.stringify(response_row);
-        }).join("<br/>"));
-      }
-    );
-  }
+  };
 
   var sql_in_progress = false;
   $("#sql button").click(function() {

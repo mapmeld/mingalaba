@@ -28,12 +28,26 @@ Your computer doesn't have any fonts for some writing systems. If this is a prob
 Client-side:
 
 - jQuery
+- sql.js from Alon Zakai
+- Papa Parse from Matt Holt
 - PolyglotJS from Airbnb
+
+Desktop Client:
+
+- Electron from GitHub
 
 Server-side:
 
 - Node.JS
 - static-server module
+
+## Running packager
+
+Install electron-packager from Max Ogden
+
+```bash
+electron-packager ./ mingalaba --platform all --arch all --version 0.30.4
+```
 
 ## License
 
