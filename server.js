@@ -4,7 +4,7 @@ var qs = require('querystring');
 
 var file = new st.Server('./static/');
 
-var translations = require('./translations.json');
+var translations = require('./static/translations.json');
 
 http.createServer(function (request, response) {
   var bodytxt = '';

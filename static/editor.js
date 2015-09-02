@@ -152,11 +152,20 @@ $(function() {
     if (this.files.length) {
       var file = this.files[0];
       var reader = new FileReader();
-      reader.onload = function(e) {
-        $("textarea").val(e.target.result);
-        updateContent();
-      };
-      reader.readAsText(file);
+      if (file.name && file.name.toLowerCase().indexOf(".sql") > -1) {
+        // implement with SQL tool
+        reader.onload = function() {
+          var Uints = new Uint8Array(reader.result);
+          setDB(Uints);
+        };
+        reader.readAsArrayBuffer(file);
+      } else {
+        reader.onload = function(e) {
+          $("textarea").val(e.target.result);
+          updateContent();
+        };
+        reader.readAsText(file);
+      }
     }
   });
 

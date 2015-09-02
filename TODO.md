@@ -5,8 +5,8 @@
 
 ## CSS basics
 
-- Old IE helps
-- Regex and SQL top margins during one-column mode
+- Old IE fixes for rem
+- Regex and SQL to pos:fixed bottom
 
 ## JS UI
 
@@ -27,11 +27,6 @@
 
 - Hook into unicode-categories module; accept all digits as \d; all commas and periods similar to comma?
 - If I highlight \r \n, show \r \n text?
-
-## SQLite
-
-- Importing a SQLite file from the browser
-- Activating changes "Chars" window to "Chars: SQL Results" ?
 
 ## Testing
 
