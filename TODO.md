@@ -10,7 +10,7 @@
 
 ## JS UI
 
-- Syntax highlighting for JS(ON) / Markdown / SQL ?
+- Syntax highlighting for JS(ON) / Markdown ?
 - Copy to Clipboard for RegExp, SQL http://stackoverflow.com/a/30810322
 - Erasing a multi-part character should only erase the last char, not all of it at once
 
@@ -30,13 +30,8 @@
 
 ## SQLite
 
-- Syntax highlighting
 - Importing a SQLite file from the browser
 - Activating changes "Chars" window to "Chars: SQL Results" ?
-
-## Electron
-
-- Distribute as a desktop app using Electron
 
 ## Testing
 

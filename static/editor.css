@@ -59,3 +59,9 @@ input, textarea, #readout {
   padding-top: 10px;
   margin-bottom: 30px;
 }
+
+#sql textarea, .CodeMirror {
+  height: auto;
+  margin: 10px;
+  border: 1px solid #000;
+}

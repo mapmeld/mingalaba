@@ -29,13 +29,19 @@ $(function() {
       db.run('INSERT INTO rows (' + column_names.join(',') + ") VALUES ('" + sqlvals.join("','") + "')");
       r++;
       if (r >= rows.length) {
-        var result = db.exec(query)[0];
-        var header = [result.columns];
-        var result_rows = result.values;
-        updateReadout(header.concat(result_rows).map(function (row) {
-          return JSON.stringify(row);
-        }).join("<br/>"));
-        sql_in_progress = false;
+        try {
+          var result = db.exec(query)[0];
+          var header = [result.columns];
+          var result_rows = result.values;
+          updateReadout(header.concat(result_rows).map(function (row) {
+            return JSON.stringify(row);
+          }).join("<br/>"));
+          sql_in_progress = false;
+        } catch (e) {
+          console.log(e);
+          updateReadout(e.toString().split("\n")[0]);
+          sql_in_progress = false;
+        }
       } else {
         loadRow(r);
       }
@@ -48,11 +54,16 @@ $(function() {
     }
   };
 
+  var sqlm = CodeMirror.fromTextArea($("#sql textarea")[0], {
+    mode: 'text/x-sql',
+    viewportMargin: Infinity
+  });
+
   var sql_in_progress = false;
   $("#sql button").click(function() {
     if (!sql_in_progress) {
       sql_in_progress = true;
-      makeSqlQuery($("#sql input").val());
+      makeSqlQuery(sqlm.getValue());
     }
   });
 });
