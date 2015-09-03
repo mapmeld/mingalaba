@@ -1,6 +1,8 @@
 # mingalaba
 
-Mingalaba is an in-browser editor for manipulating multilingual strings and text.
+Mingalaba is a desktop text editor for manipulating multilingual strings and text.
+
+<img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/screenshot.png" width="550"/>
 
 ## Features
 
@@ -16,12 +18,12 @@ Mingalaba is designed to make these actions smooth and visual, so you don't need
 
 See screenshots in the <a href="https://github.com/slang-group/mingalaba/tree/master/features">Features section</a>.
 
-## Adding languages
+## Translating the UI
 
-Edit the translations.json file to add a language. If you don't know how
+Edit the static/translations.json file to add a language. If you don't know how
 to edit the JSON file, put a list of translated words in the GitHub issues page.
 
-Your computer doesn't have any fonts for some writing systems. If this is a problem for you, install a font on your machine, or request we include it as a web font.
+Your computer does not have fonts for some of the world's writing systems. If this is a problem for you, install a font on your machine, or request we include it as a web font.
 
 ## Technologies used
 
@@ -43,10 +45,21 @@ Server-side:
 
 ## Running packager
 
-Install electron-packager from Max Ogden
+Use electron-packager from Max Ogden
 
 ```bash
-electron-packager ./ mingalaba --platform all --arch all --version 0.30.4
+cd ..
+npm install electron-packager -g
+electron-packager ./mingalaba mingalaba --platform all --arch all --version 0.30.4
+```
+
+## Running server-side / in-browser
+
+You can use index.html as a static page on GitHub Pages, or you can run a static server on your computer:
+
+```
+npm install
+npm start
 ```
 
 ## License

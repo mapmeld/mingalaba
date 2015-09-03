@@ -14,6 +14,12 @@ When I select part of the name of a constituency, I see that others have an iden
 
 <img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/diff.png"/>
 
+## Look up characters
+
+What does this character mean exactly? Select 1-3 characters in the editor, and you will see links to a database of Unicode code points. Also works on Emoji!
+
+<img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/lookup.png"/>
+
 ## See any invisible / missing code points
 
 What's wrong with the text that I just copied? Why are modifiers missing? The text is full of invisible Unicode chars.
@@ -28,7 +34,6 @@ How can I select numbers inside parentheses? Let's try this regular expression o
 
 ## Run SQL against sample data
 
-I'm on the fence about whether to use a SQL parser in JavaScript so that this can be run in
-Electron, or if I should use an actual NodeJS server and SQLite database so that you can test the more difficult queries. Here's an example using data from Wikipedia (CC-BY-SA) and run in SQLite.
+Running queries against an in-browser SQLite database - you can load a CSV file or a SQLite database using the file input.  If you load a CSV file, each row of the table will be imported into a 'rows' table.
 
 <img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/sql.png"/>
