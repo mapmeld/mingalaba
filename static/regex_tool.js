@@ -7,12 +7,22 @@ $(function() {
     }
   }
 
+  // update preview
+  $("#regex input").on("change keypress keyup", function() {
+    try {
+      var rinput = new RegExp($("#regex input#exp").val(), $("#regex input#scope").val());
+      $("#regex #regex_complete").html(rinput.toString().replace(/(.)/g, "<span/>$1"));
+      $("#regex input").css({ background: "white" });
+    } catch(e) {
+      $("#regex #regex_complete").text("");
+    }
+  });
+
   // run a regex to highlight text of chars
   $("#regex button").click(function() {
-    var modInput = $("#regex input#exp").val();
     var rinput;
     try {
-      rinput = new RegExp(modInput, $("#regex input#scope").val());
+      rinput = new RegExp($("#regex input#exp").val(), $("#regex input#scope").val());
     } catch(e) {
       // user's regex was not valid
       $("#regex input").css({ background: "pink" });
@@ -22,29 +32,25 @@ $(function() {
     }
     // show valid input
     $("#regex input").css({ background: "#fff" });
-
-    // show matches counter
     $("#regex #regex_complete").html(rinput.toString().replace(/(.)/g, "<span/>$1"));
 
     // show highlight on all matches, with custom function
     updateContent(function(txt) {
+      txt = ' ' + txt + ' ';
       var replaces = txt.match(rinput);
       $("#rmatches").text(matchText((replaces || []).length));
       if (replaces) {
-        var oldReplaces = [];
         replaces = replaces.sort(function (a, b) {
           return b.length - a.length;
         });
+        console.log(replaces);
         for (var i = 0; i < replaces.length; i++) {
           var separated = replaces[i];
-          if (oldReplaces.indexOf(separated) === -1) {
-            oldReplaces.push(separated);
-            var separatedEx = new RegExp("([^>])(" + separated.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ")([^<])");
-            txt = txt.replace(separatedEx, "$1<highlight>$2</highlight>$3");
-          }
+          var separatedEx = new RegExp("([^>])(" + separated.replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&") + ")([^<])");
+          txt = txt.replace(separatedEx, "$1_<highlight>$2</highlight>_$3");
         }
       }
-      return txt;
+      return txt.trim().replace(/_<highlight>/g, '<highlight>').replace(/<\/highlight>_/g, '</highlight>');
     });
   });
 });
