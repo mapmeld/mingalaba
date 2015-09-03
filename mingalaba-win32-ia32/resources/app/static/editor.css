@@ -1,0 +1,95 @@
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+textarea.form-control {
+  display: block;
+  height: 15rem;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+}
+
+input, button {
+  font-size: 1rem;
+  line-height: 1.3rem;
+  vertical-align: middle;
+}
+
+input.form-control {
+  display: inline;
+  width: auto;
+}
+
+highlight {
+  font-weight: bold;
+  background: yellow;
+  border: 1px solid goldenrod;
+}
+
+diff {
+  background: pink;
+}
+
+null {
+  display: inline-block;
+  width: 4px;
+  background: #aaa;
+  line-height: 0.9rem;
+}
+
+input, textarea, #readout {
+  font-family: sans-serif;
+}
+
+#source textarea, #readout {
+  height: auto;
+  min-height: 25rem;
+  margin-bottom: 225px;
+}
+
+#readout, #regex_complete {
+  height: auto;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  border: 1px solid silver;
+  padding: 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+}
+
+#regex_complete {
+  overflow: scroll;
+}
+
+.headliner {
+  background: #7c2fdc;
+  color: #fff;
+  padding-top: 10px;
+  margin-bottom: 30px;
+}
+
+#sql textarea, .CodeMirror {
+  height: auto;
+  margin: 10px;
+  border: 1px solid #000;
+}
+
+.navbar {
+  border-top: 5px inset;
+  background: #eee;
+}
+
+.CodeMirror {
+  font-family: inherit;
+  margin: 0;
+  margin-bottom: 5px;
+}
+
+#chars .lookup {
+  display: none;
+}
+
+#chars .lookup a {
+  margin-right: 8px;
+}

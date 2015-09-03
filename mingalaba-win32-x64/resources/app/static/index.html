@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Mingalaba</title>
+
+    <!-- CSS libraries -->
+    <link rel="stylesheet" href="/lib/bootstrap.min.css" type="text/css"/>
+    <link rel="stylesheet" href="/lib/codemirror.css" type="text/css"/>
+
+    <!-- custom CSS -->
+    <link rel="stylesheet" href="/editor.css" type="text/css"/>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-8 headliner">
+          <h3>Mingalaba</h3>
+        </div>
+      </div>
+
+      <div class="row">
+        <section id="upload" class="col-md-12">
+          <div class="form-horizontal">
+            <div class="form-group">
+              <label class="translate control-label" for="file">Import text, CSV, or SQLite</label>
+              <input name="file" class="form-control" type="file"/>
+
+              <label for="font" class="translate control-label">Font</label>
+              <select id="font">
+                <option>sans-serif</option>
+                <option>serif</option>
+              </select>
+              <label for="syntax" class="translate control-label">Syntax</label>
+              <select id="syntax">
+                <option value="">text</option>
+                <option value="text/x-markdown">markdown</option>
+                <option value="javascript">javascript</option>
+                <option value="text/x-sql">sql</option>
+              </select>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <div class="row">
+        <section id="source" class="col-lg-6 col-md-12">
+          <div class="form-horizontal">
+            <h4 class="translate">Text</h4>
+            <div class="form-group">
+              <textarea id="code" class="form-control">
+word,sort
+မင်္ဂလာပါ World,1
+              </textarea>
+            </div>
+          </div>
+        </section>
+
+        <section id="chars" class="col-lg-6 col-md-12">
+          <h4><span class="translate">Chars</span> <a class='lookup' href='#'></a></h4>
+          <div id="readout" class="well">
+          </div>
+        </section>
+      </div>
+
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
+        <section id="regex" class="col-lg-6 col-md-12">
+          <div class="form-horizontal">
+            <h4>
+              <span class="translate">Regular Expressions</span>
+              &nbsp;<span id="rmatches"></span>
+            </h4>
+            <div class="form-group">
+              <span>/<span>
+              <input id="exp" type="text" class="form-control" value="\s"/>
+              <span>/</span>
+              <input id="scope" type="text" class="form-control" value="gi"/>
+              <button class="translate btn btn-primary">Run</button>
+            </div>
+            <div class="form-group">
+              <br/>
+              <span id="regex_complete">/\s/gi</span>
+            </div>
+          </div>
+        </section>
+
+        <section id="sql" class="col-lg-6 col-md-12">
+          <div class="form-horizontal">
+            <h4 class="translate">SQL</h4>
+            <p class="translate">sqlite_import</p>
+            <div class="form-group well">
+              <textarea>SELECT * FROM rows</textarea>
+              <button class="translate btn btn-primary">Run</button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </div>
+
+    <!-- JS libraries -->
+    <script type="text/javascript">
+    if (window.location && window.location.protocol === 'file:') {
+      console.log = function() {};
+      //focusedWindow.toggleDevTools();
+    }
+    </script>
+    <script type="text/javascript" src="/lib/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/lib/polyglot.min.js"></script>
+    <script type="text/javascript" src="/lib/papaparse.min.js"></script>
+    <script type="text/javascript" src="/lib/sql.min.js"></script>
+
+    <script type="text/javascript" src="/lib/codemirror.js"></script>
+    <script type="text/javascript" src="/lib/codemirror-javascript.js"></script>
+    <script type="text/javascript" src="/lib/codemirror-markdown.js"></script>
+    <script type="text/javascript" src="/lib/codemirror-sql.js"></script>
+
+    <!-- translations -->
+    <script type="text/javascript" src="/translations.js"></script>
+
+    <!-- tools and components -->
+    <script type="text/javascript" src="/regex_tool.js"></script>
+    <script type="text/javascript" src="/sql_tool.js"></script>
+
+    <!-- glue it together -->
+    <script type="text/javascript" src="/editor.js"></script>
+  </body>
+</html>

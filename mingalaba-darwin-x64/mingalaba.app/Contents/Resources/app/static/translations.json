@@ -1,0 +1,35 @@
+{
+  "en": {
+    "en": "en",
+    "ltr": "ltr",
+    "Chars": "Chars",
+    "Copy": "Copy",
+    "sqlite_import": "Each line of your text is imported into SQLite as a row. The first row names the column fields.",
+    "Find": "Find",
+    "Font": "Font",
+    "Import text, CSV, or SQLite": "Import text, CSV, or SQLite",
+    "Mingalaba": "Mingalaba",
+    "Regular Expressions": "Regular Expressions",
+    "Run": "Run",
+    "Source": "Source",
+    "SQL": "SQL",
+    "Syntax": "Syntax",
+    "Text": "Text"
+  },
+  "es": {
+    "en": "es",
+    "ltr": "ltr",
+    "Chars": "Chars",
+    "Copy": "Copiar",
+    "sqlite_import": "Cada línea de su texto se importa en SQLite como una fila. La primera fila es los nombres de las columnas.",
+    "Find": "Encontrar",
+    "Font": "Tipo de letra",
+    "Import text, CSV, or SQLite": "Importar texto, CSV, o SQLite",
+    "Mingalaba": "Mingalaba",
+    "Regular Expressions": "Expresiónes regulares",
+    "Run": "Correr",
+    "SQL": "SQL",
+    "Syntax": "Syntax",
+    "Text": "Texto"
+  }
+}
