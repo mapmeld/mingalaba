@@ -3,6 +3,8 @@ var customdb = false;
 function setDB(Uints) {
   customdb = true;
   db = new SQL.Database(Uints);
+  $("#source").hide()
+  $("#chars").removeClass("col-lg-6").addClass("col-lg-12");
 }
 
 $(function() {
