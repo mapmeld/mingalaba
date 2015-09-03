@@ -150,7 +150,7 @@ $(function() {
   // keep consistent across input and output fields
   $("#font").change(function() {
     var newFont = $("#font").val();
-    $("textarea, input, #readout").css({ fontFamily: newFont });
+    $("textarea, input, #readout, .CodeMirror").css({ fontFamily: newFont });
   });
 
   // pressing enter/return should activate a tool

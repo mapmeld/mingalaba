@@ -79,3 +79,9 @@ input, textarea, #readout {
   border-top: 5px inset;
   background: #eee;
 }
+
+.CodeMirror {
+  font-family: inherit;
+  margin: 0;
+  margin-bottom: 5px;
+}
