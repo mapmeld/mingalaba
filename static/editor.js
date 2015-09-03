@@ -143,7 +143,25 @@ $(function() {
     })
     .on("select", function(e) {
       // show what you are highlighting
-      updateContent(this.value.substring(this.selectionStart, this.selectionEnd));
+      var selection = this.value.substring(this.selectionStart, this.selectionEnd);
+      updateContent(selection);
+      if (selection.length && selection.length < 4) {
+        $("#chars .lookup").html('').show();
+        for (var s = 0; s < selection.length; s++) {
+          $("#chars .lookup").append(
+            $("<a></a>")
+              .text(selection[s])
+              .attr("href", "http://unicode.org/charcode/" + selection.charCodeAt(s))
+          );
+        }
+      } else {
+        $("#chars .lookup").hide();
+      }
+    })
+    .on("blur", function() {
+      setTimeout(function() {
+        $("#chars .lookup").hide();
+      }, 400);
     });
 
   // fonts to support different languages

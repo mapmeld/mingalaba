@@ -15,7 +15,7 @@
 
 ## Char features
 
-- Look up code point and meaning
+- Actual link for looking up code point and meaning
 
 ## Regex / Find
 

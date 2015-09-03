@@ -85,3 +85,11 @@ input, textarea, #readout {
   margin: 0;
   margin-bottom: 5px;
 }
+
+#chars .lookup {
+  display: none;
+}
+
+#chars .lookup a {
+  margin-right: 8px;
+}
