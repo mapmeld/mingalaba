@@ -150,7 +150,7 @@ $(function() {
           $("#chars .lookup").append(
             $("<a></a>")
               .text(selection[s])
-              .attr("href", "http://unicode.org/charcode/" + selection.charCodeAt(s))
+              .attr("href", "http://www.unicodemap.org/details/" + selection.charCodeAt(s) + "/")
           );
         }
       } else {

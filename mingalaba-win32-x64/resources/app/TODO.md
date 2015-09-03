@@ -9,13 +9,8 @@
 
 ## i18n
 
-- Translate 'syntax'
 - Include Google Noto fonts (as needed?)
 - Can I have plugins, like add myanmar-numbers module or knayi module, and use it to transform output in the readout?
-
-## Char features
-
-- Actual link for looking up code point and meaning
 
 ## Regex / Find
 
