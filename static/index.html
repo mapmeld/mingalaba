@@ -25,6 +25,12 @@
             <div class="form-group">
               <label class="translate control-label" for="file">Import text, CSV, or SQLite</label>
               <input name="file" class="form-control" type="file"/>
+
+              <label for="font" class="translate control-label">Font</label>
+              <select id="font">
+                <option>sans-serif</option>
+                <option>serif</option>
+              </select>
             </div>
           </div>
         </section>
@@ -40,13 +46,6 @@ word,sort
 မင်္ဂလာပါ World,1
               </textarea>
             </div>
-            <div class="form-group">
-              <label for="font" class="translate control-label">Font</label>
-              <select id="font">
-                <option>sans-serif</option>
-                <option>serif</option>
-              </select>
-            </div>
           </div>
         </section>
 
@@ -57,7 +56,7 @@ word,sort
         </section>
       </div>
 
-      <div class="row">
+      <div class="navbar navbar-inverse navbar-fixed-bottom">
         <section id="regex" class="col-lg-6 col-md-12">
           <div class="form-horizontal">
             <h4>

@@ -6,13 +6,10 @@
 ## CSS basics
 
 - Old IE fixes for rem
-- Regex and SQL to pos:fixed bottom
 
 ## JS UI
 
 - Syntax highlighting for JS(ON) / Markdown ?
-- Copy to Clipboard for RegExp, SQL http://stackoverflow.com/a/30810322
-- Erasing a multi-part character should only erase the last char, not all of it at once
 
 ## i18n
 

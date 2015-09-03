@@ -134,6 +134,10 @@ $(function() {
       }
     })
     .on("change keypress keyup", function() {
+      $("#source textarea").css({
+        height: $("#source textarea")[0].scrollHeight + "px"
+      });
+
       // show split-up readout below text input
       updateContent();
     })

@@ -42,15 +42,24 @@ input, textarea, #readout {
   font-family: sans-serif;
 }
 
+#source textarea, #readout {
+  height: auto;
+  min-height: 25rem;
+  margin-bottom: 225px;
+}
+
 #readout, #regex_complete {
-  max-height: 30rem;
-  overflow: scroll;
+  height: auto;
   font-size: 1.2rem;
   line-height: 1.8rem;
   border: 1px solid silver;
   padding: 10px;
   border-radius: 5px;
   white-space: nowrap;
+}
+
+#regex_complete {
+  overflow: scroll;
 }
 
 .headliner {
@@ -64,4 +73,9 @@ input, textarea, #readout {
   height: auto;
   margin: 10px;
   border: 1px solid #000;
+}
+
+.navbar {
+  border-top: 5px inset;
+  background: #eee;
 }
