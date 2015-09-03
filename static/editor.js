@@ -124,6 +124,15 @@ $(function() {
   });
 
   $("#source textarea")
+    .on("keypress", function (e) {
+      if (e.keyCode === 8) {
+        // backspace removes one char at a time
+        e.preventDefault();
+        var content = $("#source textarea").val();
+        $("#source textarea").val( content.substring(0, content.length - 1) );
+        return false;
+      }
+    })
     .on("change keypress keyup", function() {
       // show split-up readout below text input
       updateContent();
