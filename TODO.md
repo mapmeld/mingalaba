@@ -20,7 +20,6 @@
 ## Regex / Find
 
 - Hook into unicode-categories module; accept all digits as \d; all commas and periods similar to comma?
-- If I highlight \r \n, show \r \n text?
 
 ## Testing
 

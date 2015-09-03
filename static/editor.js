@@ -4,8 +4,7 @@ $(function() {
   updateReadout = function (chars) {
     var measure_canvas = $("<canvas>")[0];
     var measure = measure_canvas.getContext('2d');
-
-    chars = chars.replace(/\r\n|\n/g, '<br/>').split("");
+    chars = chars.replace(/\r\n/g, '\\r\\n<br/>').replace(/\n/g, '\\n<br/>').split("");
     for (var c = 0; c < chars.length; c++) {
       // don't split ASCII, so you can embed ASCII tags
       // split the rest so diacritics are visible
