@@ -153,6 +153,19 @@ $(function() {
     $("textarea, input, #readout, .CodeMirror").css({ fontFamily: newFont });
   });
 
+  // syntax highlighting
+  var cm = null;
+  $("#syntax").change(function() {
+    if (cm) {
+      cm.setOption('mode', $("#syntax").val());
+    } else {
+      debugger;
+      cm = CodeMirror.fromTextArea($("#source textarea")[0], {
+        mode: $("#syntax").val()
+      });
+    }
+  });
+
   // pressing enter/return should activate a tool
   $("input").keypress(function(e) {
     if (e.keyCode === 13) {

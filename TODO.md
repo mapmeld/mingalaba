@@ -7,14 +7,11 @@
 
 - Old IE fixes for rem
 
-## JS UI
-
-- Syntax highlighting for JS(ON) / Markdown ?
-
 ## i18n
 
-- Include Google Noto fonts
-- Can I have plugins, like add myanmar-numbers module or zawgyi module, and use it to transform output in the readout?
+- Translate 'syntax'
+- Include Google Noto fonts (as needed?)
+- Can I have plugins, like add myanmar-numbers module or knayi module, and use it to transform output in the readout?
 
 ## Char features
 
