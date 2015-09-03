@@ -50,7 +50,7 @@ Use electron-packager from Max Ogden
 ```bash
 cd ..
 npm install electron-packager -g
-electron-packager ./mingalaba mingalaba --platform all --arch all --version 0.30.4
+electron-packager ./mingalaba mingalaba --platform all --arch all --version 0.30.4 --overwrite
 ```
 
 ## Running server-side / in-browser

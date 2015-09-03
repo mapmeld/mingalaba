@@ -51,7 +51,11 @@ if (gup("lang")) {
   lang_ending = '?lang=' + gup("lang").toLowerCase();
 }
 
-$.getJSON('translations.json', function (translations) {
+var tfile = 'translations.json';
+if (window.location && window.location.protocol === 'file:') {
+  tfile = 'static/' + tfile;
+}
+$.getJSON(tfile, function (translations) {
   var preferred = [gup("lang"), window.navigator.language].concat(window.navigator.languages || []).concat(["en"]);
   for (var p = 0; p < preferred.length; p++) {
     if (!preferred[p]) {

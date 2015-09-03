@@ -20,7 +20,6 @@
     "querystring": "^0.2.0"
   },
   "devDependencies": {
-    "electron-packager": "^5.0.2",
     "electron-prebuilt": "^0.30.4"
   }
 }
