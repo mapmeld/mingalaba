@@ -18,6 +18,10 @@ Mingalaba is designed to make these actions smooth and visual, so you don't need
 
 See screenshots in the <a href="https://github.com/slang-group/mingalaba/tree/master/features">Features section</a>.
 
+## Download
+
+All of the Electron-packaged apps are available on <a href='https://github.com/slang-group/mingalaba/tree/dist'>the 'dist' branch</a>.
+
 ## Translating the UI
 
 Edit the static/translations.json file to add a language. If you don't know how

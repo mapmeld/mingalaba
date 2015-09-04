@@ -37,3 +37,11 @@ How can I select numbers inside parentheses? Let's try this regular expression o
 Running queries against an in-browser SQLite database - you can load a CSV file or a SQLite database using the file input.  If you load a CSV file, each row of the table will be imported into a 'rows' table.
 
 <img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/sql.png"/>
+
+## Try it!
+
+The editor is available <a href="http://slanggroup.org/mingalaba">on GitHub Pages</a>.
+
+## Download
+
+All of the Electron-packaged apps are available on <a href='https://github.com/slang-group/mingalaba/tree/dist'>the 'dist' branch</a>.
