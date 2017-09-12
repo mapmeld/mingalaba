@@ -15,11 +15,11 @@
   "author": "Nick Doiron <ndoiron@mapmeld.com>",
   "license": "GPL-3.0",
   "dependencies": {
-    "node-polyglot": "^0.4.3",
+    "node-polyglot": "^2.2.2",
     "node-static": "^0.7.7",
     "querystring": "^0.2.0"
   },
   "devDependencies": {
-    "electron-prebuilt": "^0.30.4"
+    "electron-prebuilt": "^1.4.13"
   }
 }
