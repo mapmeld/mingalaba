@@ -1,5 +1,7 @@
 # mingalaba
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/mapmeld/mingalaba.svg)](https://greenkeeper.io/)
+
 Mingalaba is a desktop text editor for manipulating multilingual strings and text.
 
 <img src="https://raw.githubusercontent.com/slang-group/mingalaba/master/features/screenshot.png" width="550"/>
